@@ -23,17 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2389988-1c4b-4485-bab7-6e33b4e0a907" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/Register/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/printpage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TaxRegister.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TaxRegister.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Register/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/alert.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/alert.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +180,7 @@
       <updated>1602180721561</updated>
       <workItem from="1602180722896" duration="11004000" />
       <workItem from="1602230808007" duration="20634000" />
-      <workItem from="1602346819714" duration="9364000" />
+      <workItem from="1602346819714" duration="10151000" />
     </task>
     <servers />
   </component>
