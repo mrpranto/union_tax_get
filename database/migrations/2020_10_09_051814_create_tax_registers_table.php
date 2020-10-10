@@ -17,7 +17,7 @@ class CreateTaxRegistersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('father_name');
-            $table->integer('holding_no');
+            $table->integer('holding_no')->unique();
             $table->unsignedBigInteger('word_number_id');
             $table->unsignedBigInteger('village_id');
             $table->unsignedBigInteger('house_model_id');
@@ -31,6 +31,8 @@ class CreateTaxRegistersTable extends Migration
             $table->integer('adult_boy_count')->nullable();
             $table->integer('count_of_member')->nullable();
             $table->tinyInteger('sanitation')->nullable();
+            $table->string('nid_number')->unique();
+            $table->string('mobile')->unique();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TaxRegisterServices;
+use App\TaxRegister;
 use Illuminate\Http\Request;
 
 class TaxRegisterController extends Controller
@@ -23,7 +24,9 @@ class TaxRegisterController extends Controller
      */
     public function index()
     {
-        //
+        $taxRegisters = TaxRegister::paginate(30);
+
+        return view('Register.index', compact('taxRegisters'));
     }
 
     /**
@@ -53,6 +56,10 @@ class TaxRegisterController extends Controller
     public function store(Request $request)
     {
         $this->taxRegisterServices->validateStoreData($request);
+
+        $this->taxRegisterServices->storeData($request);
+
+        return redirect()->back()->with('success', 'টাক্স রেজিস্টার করা সফল হয়েছে।');
     }
 
     /**
