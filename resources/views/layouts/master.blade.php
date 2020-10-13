@@ -36,7 +36,7 @@
 <body id="page-top">
 <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-light accordion d-print-none" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
         </a>
@@ -71,6 +71,11 @@
                     <a class="collapse-item" href="form_advanceds.html"><i class="fa fa-list"></i> কর আদায় তালিকা</a>
                 </div>
             </div>
+        </li>
+                <li class="nav-item {{ request()->is('page') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('page') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>print</span></a>
         </li>
 
     </ul>

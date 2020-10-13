@@ -1,78 +1,67 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="container-fluid" id="container-wrapper">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+<div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 d-print-none">
             <h4 class="mb-0 text-gray-800">Dashboard</h4>
         </div>
 
         <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Total Member</div>
-                                <a href=""><div class="h5 mb-0 font-weight-bold text-gray-800"></div></a>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Current Month Bazar</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-shopping-cart fa-2x text-success"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- New User Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Current Month Meal</div>
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-utensils fa-2x text-info"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Today Meal Rate</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-money-bill-wave-alt fa-2x text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            <div class="col-md-12">
+
+            <h1 class="text-center mt-3">১০ হরিশংকরপুর ইউনিয়ন পরিষদ</h1>
+            <h2 class="text-center">ডাকঘরঃ হরিশংকরপুর, উপজেলা ও জেলাঃ ঝিনাইদহ। মোবাঃ ০১৭২৪-২৯৯৭৯৯  </h2>
+
+
+<table class="table table-bordered" >
+   
+    
+        <tbody>
+                            <tr>
+                                <td>খানা প্রধানের নামঃ</td>
+                                <td>জিমর</td>
+                                <td>হোল্ডিং নং</td>
+                                <td>12</td>
+                                <td>বিল নং</td>
+                                <td>12</td>
+                                <td>ইস্যুর তারিখ</td>
+                                <td>10-7-20</td>
+                            </tr>
+
+                            <tr>
+                                <td>পিতার নাম</td>
+                                <td>জমির রশিদ</td>
+                                <td>অর্থ-বছর</td>
+                                <td>20-21</td>
+                                <td>বই নং</td>
+                                <td>3</td>
+                                <td>গ্রামঃ</td>
+                                <td>হরিশংকরপুর</td>
+                            </tr>
+
+                            <tr class="row100">
+                                <td>জমাদানের শেষ তারিখ</td>
+                                <td colspan="2">10-10-2020</td>
+                                <td colspan="2">সর্বমোট</td>
+                                <td>2961</td>
+                                <td>টাকা</td>
+                                <td>--</td>
+                                
+                            </tr>
+
+                    
+                        </tbody>
+    
+    
+    
+</table>
+
+</div>
 
         </div>
-        <!--Row-->
+       
     </div>
+    
+   
 @endsection
