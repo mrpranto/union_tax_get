@@ -46,28 +46,28 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>ড্যাশবোর্ড</span></a>
         </li>
-        <li class="nav-item {{ request()->is('tax-register/create') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('tax-register/create') || request()->is('tax-register') || request()->is('tax-register/*/edit') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegister" aria-expanded="true"
                aria-controls="collapseForm">
                 <i class="fa fa-cash-register"></i>
                 <span>কর ধার্য রেজিস্টার</span>
             </a>
-            <div id="collapseRegister" class="collapse {{ request()->is('tax-register/create') || request()->is('tax-register') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div id="collapseRegister" class="collapse {{ request()->is('tax-register/create') || request()->is('tax-register') || request()->is('tax-register/*/edit') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded"><h6 class="collapse-header"></h6>
                     <a class="collapse-item {{ request()->is('tax-register/create') ? 'active' : '' }}" href="{{ route('tax-register.create') }}"><i class="fa fa-plus"></i> নতুন রেজিস্টার</a>
-                    <a class="collapse-item {{ request()->is('tax-register') ? 'active' : '' }}" href="{{ route('tax-register.index') }}"><i class="fa fa-list"></i> রেজিস্টার তালিকা</a>
+                    <a class="collapse-item {{ request()->is('tax-register') || request()->is('tax-register/*/edit') ? 'active' : '' }}" href="{{ route('tax-register.index') }}"><i class="fa fa-list"></i> রেজিস্টার তালিকা</a>
                 </div>
             </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->is('tax-get/create') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaxGet" aria-expanded="true"
                aria-controls="collapseForm">
                 <i class="fa fa-money-bill-wave"></i>
                 <span>কর আদায়</span>
             </a>
-            <div id="collapseTaxGet" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div id="collapseTaxGet" class="collapse {{ request()->is('tax-get/create') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded"><h6 class="collapse-header"></h6>
-                    <a class="collapse-item" href="form_basics.html"><i class="fa fa-plus"></i> নতুন কর আদায়</a>
+                    <a class="collapse-item {{ request()->is('tax-get/create') ? 'active' : '' }}" href="{{ route('tax-get.create') }}"><i class="fa fa-plus"></i> নতুন কর আদায়</a>
                     <a class="collapse-item" href="form_advanceds.html"><i class="fa fa-list"></i> কর আদায় তালিকা</a>
                 </div>
             </div>

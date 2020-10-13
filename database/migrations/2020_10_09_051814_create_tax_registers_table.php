@@ -20,10 +20,10 @@ class CreateTaxRegistersTable extends Migration
             $table->integer('holding_no')->unique();
             $table->unsignedBigInteger('word_number_id');
             $table->unsignedBigInteger('village_id');
-            $table->integer('building');
-            $table->integer('doa_ripe_tin_shed');
-            $table->integer('raw_chapra');
-            $table->integer('pucca_house');
+            $table->integer('building')->nullable();
+            $table->integer('doa_ripe_tin_shed')->nullable();
+            $table->integer('raw_chapra')->nullable();
+            $table->integer('pucca_house')->nullable();
             $table->decimal('amount_of_land');
             $table->decimal('house_and_land_rate');
             $table->unsignedBigInteger('occupation_id');

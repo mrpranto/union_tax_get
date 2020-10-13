@@ -12,4 +12,9 @@ class TaxRegister extends Model
     {
         return $this->belongsTo(Occupation::class);
     }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
 }

@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <label for="holding_number" class="col-form-label">হোল্ডিং নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('holding_number') is-invalid @enderror" name="holding_number" value="{{ old('holding_number') }}" required id="holding_number" >
+                                            <input type="number" class="form-control form-control-sm @error('holding_number') is-invalid @enderror" name="holding_number" value="{{ old('holding_number') }}" required id="holding_number" >
                                             @error('holding_number')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">দালান</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('building') is-invalid @enderror" required name="building" step="0.01" value="{{ old('building') }}" id="building">
+                                            <input type="number" class="form-control form-control-sm @error('building') is-invalid @enderror" name="building" step="0.01" value="{{ old('building') }}" id="building">
 
                                             @error('building')
                                             <span class="invalid-feedback" role="alert">
@@ -81,7 +81,7 @@
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">ডোয়া পাকা টিনসেড</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('doa_ripe_tin_shed') is-invalid @enderror" required name="doa_ripe_tin_shed" step="0.01" value="{{ old('doa_ripe_tin_shed') }}" id="doa_ripe_tin_shed">
+                                            <input type="number" class="form-control form-control-sm @error('doa_ripe_tin_shed') is-invalid @enderror"  name="doa_ripe_tin_shed" step="0.01" value="{{ old('doa_ripe_tin_shed') }}" id="doa_ripe_tin_shed">
 
                                             @error('doa_ripe_tin_shed')
                                             <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">কাঁচা ছাপড়া</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('raw_chapra') is-invalid @enderror" required name="raw_chapra" step="0.01" value="{{ old('raw_chapra') }}" id="raw_chapra">
+                                            <input type="number" class="form-control form-control-sm @error('raw_chapra') is-invalid @enderror" name="raw_chapra" step="0.01" value="{{ old('raw_chapra') }}" id="raw_chapra">
 
                                             @error('raw_chapra')
                                             <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">পাকা ঘর ওয়ালা </label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('pucca_house') is-invalid @enderror" required name="pucca_house" step="0.01" value="{{ old('pucca_house') }}" id="pucca_house">
+                                            <input type="number" class="form-control form-control-sm @error('pucca_house') is-invalid @enderror" name="pucca_house" step="0.01" value="{{ old('pucca_house') }}" id="pucca_house">
 
                                             @error('pucca_house')
                                             <span class="invalid-feedback" role="alert">

@@ -31,4 +31,6 @@ Route::group(['middleware' => 'auth'],function (){
     Route::resource('tax-register', 'TaxRegisterController');
     Route::get('get-villages', 'TaxRegisterController@getVillages')->name('get.villages');
 
+    Route::resource('tax-get', 'TaxGetController');
+
 });
