@@ -45,9 +45,19 @@
                                         <td>{{ $taxRegister->mobile }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                                <a href="{{ route('tax-register.edit', $taxRegister->id) }}" class="btn btn-sm btn-outline-dark">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-dark" onclick="deleteCheck({{ $taxRegister->id }})">
+                                                    <i class="fa fa-trash-alt"></i>
+                                                </button>
                                             </div>
+
+                                            <form action="{{ route('tax-register.destroy', $taxRegister->id) }}" method="post" id="deleteForm_{{ $taxRegister->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+
                                         </td>
                                     </tr>
                                 @empty
@@ -59,6 +69,9 @@
 
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $taxRegisters->links() }}
                     </div>
                 </div>
             </div>

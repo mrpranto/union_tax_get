@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h4 class="mb-0 text-gray-800"> <i class="fa fa-plus"></i> নতুন রেজিস্টার যোগ করুন</h4>
+            <h4 class="mb-0 text-gray-800"> <i class="fa fa-plus"></i> রেজিস্টার এডিট করুন</h4>
         </div>
 
         <div class="row mb-3">
@@ -19,15 +19,16 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('tax-register.store') }}" method="post">
+                        <form action="{{ route('tax-register.update', $taxRegister->id) }}" method="post">
                             @csrf
+                            @method('PUT')
 
                             <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="name" class="col-form-label">মালিকের নাম</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" required name="name" value="{{ old('name') }}" id="name">
+                                            <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" required name="name" value="{{ old('name') ?: $taxRegister }}" id="name">
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -39,7 +40,7 @@
                                     <div class="form-group">
                                         <label for="fathers_name" class="col-form-label">পিতার নাম</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" name="fathers_name" value="{{ old('fathers_name') }}" required id="fathers_name" >
+                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" name="fathers_name" value="{{ old('fathers_name') ?: $taxRegister }}" required id="fathers_name" >
                                             @error('fathers_name')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -51,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="holding_number" class="col-form-label">হোল্ডিং নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('holding_number') is-invalid @enderror" name="holding_number" value="{{ old('holding_number') }}" required id="holding_number" >
+                                            <input type="text" class="form-control form-control-sm @error('holding_number') is-invalid @enderror" name="holding_number" value="{{ old('holding_number') ?: $taxRegister }}" required id="holding_number" >
                                             @error('holding_number')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -64,69 +65,29 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="house_model" class="col-form-label">দালান</label>
+                                        <label for="house_model" class="col-form-label">প্রকৃত ঘরের বর্ণনা</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('building') is-invalid @enderror" required name="building" step="0.01" value="{{ old('building') }}" id="building">
+                                            <select class="select2-single form-control" name="house_model" required id="house_model">
+                                                <option value="" selected disabled>- সেট করুন -</option>
 
-                                            @error('building')
+                                                @foreach($houseModels as $key => $value)
+                                                    <option {{ old('house_model') == $key ? 'selected' : '' }} value="{{ $key }}">{{ $value ?: $taxRegister }}</option>
+                                                @endforeach
+
+                                            </select>
+
+                                            @error('house_model')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="house_model" class="col-form-label">ডোয়া পাকা টিনসেড</label>
-                                        <div>
-                                            <input type="number" class="form-control form-control-sm @error('doa_ripe_tin_shed') is-invalid @enderror" required name="doa_ripe_tin_shed" step="0.01" value="{{ old('doa_ripe_tin_shed') }}" id="doa_ripe_tin_shed">
-
-                                            @error('doa_ripe_tin_shed')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="house_model" class="col-form-label">কাঁচা ছাপড়া</label>
-                                        <div>
-                                            <input type="number" class="form-control form-control-sm @error('raw_chapra') is-invalid @enderror" required name="raw_chapra" step="0.01" value="{{ old('raw_chapra') }}" id="raw_chapra">
-
-                                            @error('raw_chapra')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="house_model" class="col-form-label">পাকা ঘর ওয়ালা </label>
-                                        <div>
-                                            <input type="number" class="form-control form-control-sm @error('pucca_house') is-invalid @enderror" required name="pucca_house" step="0.01" value="{{ old('pucca_house') }}" id="pucca_house">
-
-                                            @error('pucca_house')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="amount_of_land" class="col-form-label">জমির পরিমাণ</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('amount_of_land') is-invalid @enderror" required name="amount_of_land" step="0.01" value="{{ old('amount_of_land') }}" id="amount_of_land" >
+                                            <input type="number" class="form-control form-control-sm @error('amount_of_land') is-invalid @enderror" required name="amount_of_land" step="0.01" value="{{ old('amount_of_land') ?: $taxRegister }}" id="amount_of_land" >
                                             @error('amount_of_land')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -138,7 +99,7 @@
                                     <div class="form-group">
                                         <label for="house_and_land_rate" class="col-form-label">জমিসহ বসতবাড়ির আনুমানিক মূল্য</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('mobile') is-invalid @enderror" step="0.01" required name="house_and_land_rate" value="{{ old('house_and_land_rate') }}" id="house_and_land_rate" >
+                                            <input type="number" class="form-control form-control-sm @error('mobile') is-invalid @enderror" step="0.01" required name="house_and_land_rate" value="{{ old('house_and_land_rate') ?: $taxRegister }}" id="house_and_land_rate" >
                                             @error('house_and_land_rate')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -174,7 +135,7 @@
                                     <div class="form-group">
                                         <label for="amount_of_tax" class="col-form-label">ধার্যকৃত ট্যাক্স</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('mobile') is-invalid @enderror" step="0.01" required name="amount_of_tax" value="{{ old('amount_of_tax') }}" id="amount_of_tax" >
+                                            <input type="number" class="form-control form-control-sm @error('mobile') is-invalid @enderror" step="0.01" required name="amount_of_tax" value="{{ old('amount_of_tax') ?: $taxRegister }}" id="amount_of_tax" >
                                             @error('amount_of_tax')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -186,7 +147,7 @@
                                     <div class="form-group">
                                         <label for="minor_girl_count" class="col-form-label">অপ্রাপ্ত বয়স্ক মেয়ের সংখ্যা <small>(১৮ এর নিচে)</small></label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('minor_girl_count') is-invalid @enderror" name="minor_girl_count" value="{{ old('minor_girl_count') }}" id="minor_girl_count" >
+                                            <input type="number" class="form-control form-control-sm @error('minor_girl_count') is-invalid @enderror" name="minor_girl_count" value="{{ old('minor_girl_count') ?: $taxRegister }}" id="minor_girl_count" >
                                             @error('minor_girl_count')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -201,7 +162,7 @@
                                     <div class="form-group">
                                         <label for="adult_girl_count" class="col-form-label">প্রাপ্তবয়স্ক মেয়ের সংখ্যা <small>(১৮ এর উর্দ্ধে)</small></label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('adult_girl_count') is-invalid @enderror" name="adult_girl_count" value="{{ old('adult_girl_count') }}" id="adult_girl_count">
+                                            <input type="number" class="form-control form-control-sm @error('adult_girl_count') is-invalid @enderror" name="adult_girl_count" value="{{ old('adult_girl_count') ?: $taxRegister }}" id="adult_girl_count">
                                             @error('adult_girl_count')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -213,7 +174,7 @@
                                     <div class="form-group">
                                         <label for="minor_boy_count" class="col-form-label">অপ্রাপ্ত বয়স্ক ছেলের সংখ্যা <small>(২১ এর নিচে)</small></label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('minor_boy_count') is-invalid @enderror" name="minor_boy_count" value="{{ old('minor_boy_count') }}" id="minor_boy_count" >
+                                            <input type="number" class="form-control form-control-sm @error('minor_boy_count') is-invalid @enderror" name="minor_boy_count" value="{{ old('minor_boy_count') ?: $taxRegister }}" id="minor_boy_count" >
                                             @error('minor_boy_count')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -225,7 +186,7 @@
                                     <div class="form-group">
                                         <label for="adult_boy_count" class="col-form-label">প্রাপ্ত বয়স্ক ছেলের সংখ্যা <small>(২১ এর ঊর্ধ্বে)</small></label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('adult_boy_count') is-invalid @enderror" name="adult_boy_count" value="{{ old('adult_boy_count') }}" id="adult_boy_count" >
+                                            <input type="number" class="form-control form-control-sm @error('adult_boy_count') is-invalid @enderror" name="adult_boy_count" value="{{ old('adult_boy_count') ?: $taxRegister }}" id="adult_boy_count" >
                                             @error('adult_boy_count')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -240,7 +201,7 @@
                                     <div class="form-group">
                                         <label for="count_of_member" class="col-form-label">মোট সদস্য</label>
                                         <div>
-                                            <input type="number" class="form-control form-control-sm @error('count_of_member') is-invalid @enderror" required name="count_of_member" value="{{ old('count_of_member') }}" id="count_of_member">
+                                            <input type="number" class="form-control form-control-sm @error('count_of_member') is-invalid @enderror" required name="count_of_member" value="{{ old('count_of_member') ?: $taxRegister }}" id="count_of_member">
                                             @error('count_of_member')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -254,7 +215,7 @@
                                     <div class="form-group">
                                         <label for="nid_number" class="col-form-label">জাতীয় পরিচয় পত্র নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('nid_number') is-invalid @enderror" required name="nid_number" value="{{ old('nid_number') }}" id="nid_number">
+                                            <input type="text" class="form-control form-control-sm @error('nid_number') is-invalid @enderror" required name="nid_number" value="{{ old('nid_number') ?: $taxRegister }}" id="nid_number">
                                             @error('nid_number')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -267,7 +228,7 @@
                                     <div class="form-group">
                                         <label for="mobile" class="col-form-label">মোবাইল নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" required name="mobile" value="{{ old('mobile') }}" id="mobile">
+                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" required name="mobile" value="{{ old('mobile') ?: $taxRegister }}" id="mobile">
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -284,9 +245,9 @@
                                         <label for="name" class="col-form-label">সানিটেশন</label>
                                         <div>
 
-                                            <label><input type="radio" name="sanitation" value="1" {{ old('sanitation') == 1 ? 'checked' : '' }} required> পাকা</label>
+                                            <label><input type="radio" name="sanitation" value="1" {{ old('sanitation') == 1 ? 'checked' : '' }} {{ $taxRegister == 1 ? 'checked' : '' }} required> পাকা</label>
                                             &nbsp;&nbsp;
-                                            <label><input type="radio" name="sanitation" value="2" {{ old('sanitation') == 2 ? 'checked' : '' }} required> কাঁচা</label>
+                                            <label><input type="radio" name="sanitation" value="2" {{ old('sanitation') == 2 ? 'checked' : '' }} {{ $taxRegister == 2 ? 'checked' : '' }} required> কাঁচা</label>
 
 
                                             @error('sanitation')
@@ -304,7 +265,7 @@
                                                 <option value="">- সেট করুন -</option>
 
                                                 @foreach($wordNumbers as $key => $value)
-                                                    <option {{ old('word_number') == $key ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                                                    <option {{ old('word_number') == $key ? 'selected' : '' }} {{ $taxRegister == $key ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
                                                 @endforeach
 
 

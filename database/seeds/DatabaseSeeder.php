@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('11223344')
         ]);
 
-        $this->call(HouseModelTableSeeder::class);
         $this->call(OccupationTableSeeder::class);
         $this->call(WordNumberTableSeeder::class);
         $this->call(VillageTableSeeder::class);

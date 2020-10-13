@@ -24,7 +24,7 @@ class TaxRegisterController extends Controller
      */
     public function index()
     {
-        $taxRegisters = TaxRegister::paginate(30);
+        $taxRegisters = TaxRegister::with('occupation')->paginate(30);
 
         return view('Register.index', compact('taxRegisters'));
     }
@@ -81,7 +81,9 @@ class TaxRegisterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->taxRegisterServices->editData($id);
+
+        return view('Register.edit', $data);
     }
 
     /**

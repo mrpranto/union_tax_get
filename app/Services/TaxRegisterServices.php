@@ -16,7 +16,6 @@ class TaxRegisterServices
     {
         return $data = [
 
-            'houseModels' => HouseModel::pluck('name', 'id'),
             'wordNumbers' => WordNumber::pluck('name', 'id'),
             'occupations' => Occupation::pluck('name', 'id'),
             'villages' => Village::pluck('name', 'id'),
@@ -44,12 +43,15 @@ class TaxRegisterServices
 
             'name' => 'required',
             'fathers_name' => 'required',
-            'holding_number' => 'required|unique:tax_registers,holding_no',
-            'house_model' => 'required',
-            'amount_of_land' => 'required',
-            'house_and_land_rate' => 'required',
+            'holding_number' => 'required|numeric|unique:tax_registers,holding_no',
+            'building' => 'required|numeric',
+            'doa_ripe_tin_shed' => 'required|numeric',
+            'raw_chapra' => 'required|numeric',
+            'pucca_house' => 'required|numeric',
+            'amount_of_land' => 'required|numeric',
+            'house_and_land_rate' => 'required|numeric',
             'occupation' => 'required',
-            'amount_of_tax' => 'required',
+            'amount_of_tax' => 'required|numeric',
             'minor_girl_count' => 'nullable|numeric',
             'adult_girl_count' => 'nullable|numeric',
             'minor_boy_count' => 'nullable|numeric',
@@ -66,7 +68,10 @@ class TaxRegisterServices
             'name.required' => 'মালিকের নাম অবশ্যক',
             'fathers_name.required' => 'পিতার নাম অবশ্যক',
             'holding_number.required' => 'হল্ডিং নাম্বার অবশ্যক',
-            'house_model.required' => 'প্রকৃত ঘরের বর্ণনা অবশ্যক',
+            'building.required' => 'প্রকৃত ঘরের বর্ণনা অবশ্যক',
+            'doa_ripe_tin_shed.required' => 'প্রকৃত ঘরের বর্ণনা অবশ্যক',
+            'raw_chapra.required' => 'প্রকৃত ঘরের বর্ণনা অবশ্যক',
+            'pucca_house.required' => 'প্রকৃত ঘরের বর্ণনা অবশ্যক',
             'amount_of_land.required' => 'জমির পরিমাণ অবশ্যক',
             'house_and_land_rate.required' => 'জমিসহ বসতবাড়ির আনুমানিক মূল্য অবশ্যক',
             'occupation.required' => 'পেশা অবশ্যক',
@@ -95,7 +100,10 @@ class TaxRegisterServices
             'holding_no' => $request->holding_number ,
             'word_number_id' => $request->word_number ,
             'village_id' => $request->village  ,
-            'house_model_id' => $request->house_model ,
+            'building' => $request->building ,
+            'doa_ripe_tin_shed' => $request->doa_ripe_tin_shed ,
+            'raw_chapra' => $request->raw_chapra ,
+            'pucca_house' => $request->pucca_house ,
             'amount_of_land' =>  $request->amount_of_land,
             'house_and_land_rate' => $request->house_and_land_rate ,
             'occupation_id' => $request->occupation ,
@@ -115,5 +123,15 @@ class TaxRegisterServices
         ]);
     }
 
+    public function editData($id)
+    {
+        return $data = [
+
+            'wordNumbers' => WordNumber::pluck('name', 'id'),
+            'occupations' => Occupation::pluck('name', 'id'),
+            'villages' => Village::pluck('name', 'id'),
+            'taxRegister' => TaxRegister::findOrFail($id),
+        ];
+    }
 
 }
