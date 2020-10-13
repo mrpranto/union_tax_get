@@ -75,7 +75,7 @@
                 <li class="nav-item {{ request()->is('page') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('page') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>print</span></a>
+                <span>প্রিন্ট </span></a>
         </li>
 
     </ul>
