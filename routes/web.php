@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/page', function () {
     return view('printpage');
-});
+})->name('page');
 
 Auth::routes(['register' => false]);
 
