@@ -24,7 +24,7 @@ class TaxRegisterController extends Controller
      */
     public function index()
     {
-        $taxRegisters = TaxRegister::paginate(30);
+        $taxRegisters = TaxRegister::with('occupation')->paginate(30);
 
         return view('Register.index', compact('taxRegisters'));
     }
@@ -81,7 +81,9 @@ class TaxRegisterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->taxRegisterServices->editData($id);
+
+        return view('Register.edit', $data);
     }
 
     /**
@@ -93,7 +95,11 @@ class TaxRegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->taxRegisterServices->validateUpdateData($request, $id);
+
+        $this->taxRegisterServices->updateData($request, $id);
+
+        return redirect()->route('tax-register.index')->with('success', 'টাক্স রেজিস্টার আপডেট করা সফল হয়েছে।');
     }
 
     /**
@@ -104,6 +110,20 @@ class TaxRegisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            TaxRegister::destroy($id);
+
+        }catch (\Exception $e){
+
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->with('error', 'এই ট্যাক্স ইনফর্মেশন আপনি ডিলিট করতে পারবেন না কারন এই ইনফর্মেশন অন্য টেবিল এ ব্যবহার করা হয়েছে। ');
+            }else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+
+        }
+
+        return redirect()->route('tax-register.index')->with('success', 'টাক্স রেজিস্টার ডিলিট করা সফল হয়েছে।');
     }
 }

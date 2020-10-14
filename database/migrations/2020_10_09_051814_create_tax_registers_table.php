@@ -20,7 +20,10 @@ class CreateTaxRegistersTable extends Migration
             $table->integer('holding_no')->unique();
             $table->unsignedBigInteger('word_number_id');
             $table->unsignedBigInteger('village_id');
-            $table->unsignedBigInteger('house_model_id');
+            $table->integer('building')->nullable();
+            $table->integer('doa_ripe_tin_shed')->nullable();
+            $table->integer('raw_chapra')->nullable();
+            $table->integer('pucca_house')->nullable();
             $table->decimal('amount_of_land');
             $table->decimal('house_and_land_rate');
             $table->unsignedBigInteger('occupation_id');
@@ -39,7 +42,6 @@ class CreateTaxRegistersTable extends Migration
 
             $table->foreign('word_number_id')->references('id')->on('word_numbers');
             $table->foreign('village_id')->references('id')->on('villages');
-            $table->foreign('house_model_id')->references('id')->on('house_models');
             $table->foreign('occupation_id')->references('id')->on('occupations');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');

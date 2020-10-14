@@ -23,9 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2389988-1c4b-4485-bab7-6e33b4e0a907" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/TaxGet/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/TaxRegister.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TaxRegister.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Register/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,12 +161,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Register" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/TaxGet" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\xampp\htdocs\unionProject\resources\views\TaxGet" />
       <recent name="F:\xampp\htdocs\unionProject\resources\views\Register" />
       <recent name="F:\xampp\htdocs\unionProject\resources\views" />
     </key>
@@ -181,6 +189,10 @@
       <workItem from="1602180722896" duration="11004000" />
       <workItem from="1602230808007" duration="20634000" />
       <workItem from="1602346819714" duration="10151000" />
+      <workItem from="1602429458396" duration="1688000" />
+      <workItem from="1602514087614" duration="598000" />
+      <workItem from="1602519732190" duration="6303000" />
+      <workItem from="1602604885895" duration="6492000" />
     </task>
     <servers />
   </component>
@@ -197,6 +209,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="276" key="#Composer" timestamp="1602221513776">
@@ -223,9 +236,9 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="339" y="180" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1602357167047" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1602355580936">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1602612470616">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.30.1366.738@0.30.1366.738" timestamp="1602355580936" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.30.1366.738@0.30.1366.738" timestamp="1602612470616" />
   </component>
 </project>
