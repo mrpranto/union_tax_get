@@ -9,8 +9,12 @@
         <div class="row mb-3">
             
             <div class="col-md-12">
-
-             <h1 class="text-center mt-3">১০ হরিশংকরপুর ইউনিয়ন পরিষদ</h1>
+              <div class="col-md-12">
+                <div class="col-md-2"><p>ইউপি ফরম নং ১০</p></div>
+              <div class="col-md-8"><h1 class="text-center mt-4">১০ হরিশংকরপুর ইউনিয়ন পরিষদ</h1></div>
+              <div class="col-md-2"><p>অফিস কপি</p></div>
+              </div>
+             
              <h2 class="text-center">ডাকঘরঃ হরিশংকরপুর, উপজেলা ও জেলাঃ ঝিনাইদহ। <br>মোবাঃ ০১৭২৪-২৯৯৭৯৯  </h2>
 
 
