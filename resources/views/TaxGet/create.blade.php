@@ -62,7 +62,7 @@
                                 ট্যাক্সের কোন তত্থ্য পাও্যা যাই নাই।
                             </div>
 
-                        @else
+                        @elseif(request('holding_no'))
 
                             <form action="{{ route('tax-get.store') }}" method="post">
                                 @csrf
