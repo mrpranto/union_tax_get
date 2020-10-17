@@ -57,7 +57,7 @@
                         </form>
                         <hr>
 
-                        @if (!$taxRegister->taxAmount->first())
+                        @if (!optional($taxRegister->taxAmount)->first())
                             <div class="alert alert-warning">
                                 ট্যাক্সের কোন তত্থ্য পাও্যা যাই নাই।
                             </div>
