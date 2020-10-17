@@ -35,7 +35,7 @@ class CreateTaxRegistersTable extends Migration
             $table->tinyInteger('sanitation')->nullable();
             $table->string('nid_number',30)->unique()->nullable();
             $table->string('mobile', 30)->unique()->nullable();
-            $table->string('book_no')->unique()->nullable();
+            $table->string('book_no')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();

@@ -23,23 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2389988-1c4b-4485-bab7-6e33b4e0a907" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/TaxGet/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxGetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxGetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TaxGet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TaxGet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TaxRegister.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TaxRegister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_09_051814_create_tax_registers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_09_064614_create_tax_gets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_09_064614_create_tax_gets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Register/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/TaxGet/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/TaxGet/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/printpage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/printpage.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +185,7 @@
       <workItem from="1602519732190" duration="6303000" />
       <workItem from="1602604885895" duration="6492000" />
       <workItem from="1602736158843" duration="19115000" />
-      <workItem from="1602942460813" duration="11874000" />
+      <workItem from="1602942460813" duration="12167000" />
     </task>
     <servers />
   </component>
