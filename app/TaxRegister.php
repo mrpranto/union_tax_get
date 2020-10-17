@@ -17,4 +17,14 @@ class TaxRegister extends Model
     {
         return $this->belongsTo(Village::class);
     }
+
+    public function taxAmount()
+    {
+        return $this->hasMany(TaxAmount::class)->orderBy('id','desc');
+    }
+
+    public function tax_get()
+    {
+        return $this->hasMany(TaxGet::class);
+    }
 }

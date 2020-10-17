@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Bazar;
 use App\Meal;
 use App\Member;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {

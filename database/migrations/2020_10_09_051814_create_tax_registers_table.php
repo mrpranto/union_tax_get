@@ -27,15 +27,15 @@ class CreateTaxRegistersTable extends Migration
             $table->decimal('amount_of_land');
             $table->decimal('house_and_land_rate');
             $table->unsignedBigInteger('occupation_id');
-            $table->decimal('amount_of_tax');
             $table->integer('minor_girl_count')->nullable();
             $table->integer('adult_girl_count')->nullable();
             $table->integer('minor_boy_count')->nullable();
             $table->integer('adult_boy_count')->nullable();
             $table->integer('count_of_member')->nullable();
             $table->tinyInteger('sanitation')->nullable();
-            $table->string('nid_number',30)->unique();
-            $table->string('mobile', 30)->unique();
+            $table->string('nid_number',30)->unique()->nullable();
+            $table->string('mobile', 30)->unique()->nullable();
+            $table->string('book_no')->unique()->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();

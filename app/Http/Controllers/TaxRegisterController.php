@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\TaxRegisterServices;
+use App\TaxAmount;
 use App\TaxRegister;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaxRegisterController extends Controller
 {
@@ -57,7 +59,11 @@ class TaxRegisterController extends Controller
     {
         $this->taxRegisterServices->validateStoreData($request);
 
-        $this->taxRegisterServices->storeData($request);
+        DB::transaction(function () use($request){
+
+            $this->taxRegisterServices->storeData($request);
+
+        });
 
         return redirect()->back()->with('success', 'টাক্স রেজিস্টার করা সফল হয়েছে।');
     }
@@ -95,9 +101,14 @@ class TaxRegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->taxRegisterServices->validateUpdateData($request, $id);
 
-        $this->taxRegisterServices->updateData($request, $id);
+        DB::transaction(function () use($request, $id){
+
+            $this->taxRegisterServices->updateData($request, $id);
+
+        });
 
         return redirect()->route('tax-register.index')->with('success', 'টাক্স রেজিস্টার আপডেট করা সফল হয়েছে।');
     }
@@ -112,6 +123,7 @@ class TaxRegisterController extends Controller
     {
         try {
 
+            TaxAmount::where('tax_register_id', $id)->delete();
             TaxRegister::destroy($id);
 
         }catch (\Exception $e){

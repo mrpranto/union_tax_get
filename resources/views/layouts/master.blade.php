@@ -31,6 +31,8 @@
             height: 2.375rem !important;
         }
     </style>
+
+    @yield('css')
 </head>
 
 <body id="page-top">
@@ -59,16 +61,16 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item {{ request()->is('tax-get/create') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('tax-get/create') || request()->is('tax-get') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaxGet" aria-expanded="true"
                aria-controls="collapseForm">
                 <i class="fa fa-money-bill-wave"></i>
                 <span>কর আদায়</span>
             </a>
-            <div id="collapseTaxGet" class="collapse {{ request()->is('tax-get/create') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div id="collapseTaxGet" class="collapse {{ request()->is('tax-get/create') || request()->is('tax-get') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded"><h6 class="collapse-header"></h6>
                     <a class="collapse-item {{ request()->is('tax-get/create') ? 'active' : '' }}" href="{{ route('tax-get.create') }}"><i class="fa fa-plus"></i> নতুন কর আদায়</a>
-                    <a class="collapse-item" href="form_advanceds.html"><i class="fa fa-list"></i> কর আদায় তালিকা</a>
+                    <a class="collapse-item  {{ request()->is('tax-get') ? 'active' : '' }}" href="{{ route('tax-get.index') }}"><i class="fa fa-list"></i> কর আদায় তালিকা</a>
                 </div>
             </div>
         </li>
@@ -135,6 +137,9 @@
 <script src="{{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+@yield('js')
+
 <script>
 
     $('.select2-single').select2();

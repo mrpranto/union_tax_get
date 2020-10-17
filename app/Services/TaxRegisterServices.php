@@ -5,9 +5,11 @@ namespace App\Services;
 
 
 use App\Occupation;
+use App\TaxAmount;
 use App\TaxRegister;
 use App\Village;
 use App\WordNumber;
+use Carbon\Carbon;
 
 class TaxRegisterServices
 {
@@ -50,17 +52,19 @@ class TaxRegisterServices
             'amount_of_land' => 'required|numeric',
             'house_and_land_rate' => 'required|numeric',
             'occupation' => 'required',
-            'amount_of_tax' => 'required|numeric',
             'minor_girl_count' => 'nullable|numeric',
             'adult_girl_count' => 'nullable|numeric',
             'minor_boy_count' => 'nullable|numeric',
             'adult_boy_count' => 'nullable|numeric',
             'count_of_member' => 'required',
-            'mobile' => 'required|unique:tax_registers,holding_no',
-            'nid_number' => 'required|unique:tax_registers,holding_no',
+            'mobile' => 'nullable|unique:tax_registers,holding_no',
+            'nid_number' => 'nullable|unique:tax_registers,holding_no',
             'sanitation' => 'required',
             'word_number' => 'required',
             'village' => 'required',
+            'from_year.*' => 'required',
+            'to_year.*' => 'required',
+            'amount_of_tax.*' => 'required',
 
         ],[
 
@@ -75,7 +79,6 @@ class TaxRegisterServices
             'amount_of_land.required' => 'জমির পরিমাণ অবশ্যক',
             'house_and_land_rate.required' => 'জমিসহ বসতবাড়ির আনুমানিক মূল্য অবশ্যক',
             'occupation.required' => 'পেশা অবশ্যক',
-            'amount_of_tax.required' => 'ধার্যকৃত ট্যাক্স অবশ্যক',
             'minor_girl_count.numeric' => 'অপ্রাপ্ত বয়স্ক মেয়ের সংখ্যা (১৮ এর নিচে) নাম্বার দিতে হবে',
             'adult_girl_count.numeric' => 'প্রাপ্তবয়স্ক মেয়ের সংখ্যা (১৮ এর উর্দ্ধে) নাম্বার দিতে হবে',
             'minor_boy_count.numeric' => 'অপ্রাপ্ত বয়স্ক ছেলের সংখ্যা (২১ এর নিচে) নাম্বার দিতে হবে',
@@ -88,6 +91,9 @@ class TaxRegisterServices
             'sanitation.required' => 'সানিটেশন অবশ্যক',
             'word_number.required' => 'ওয়ার্ড নাম্বার অবশ্যক',
             'village.required' => 'গ্রাম অবশ্যক',
+            'from_year.*.required' => 'শুরুর বৎছর অবশ্যক',
+            'to_year.*.required' => 'গশুরুর বৎছর অবশ্যক',
+            'amount_of_tax.*.required' => 'ধার্যকৃত ট্যাক্স অবশ্যক',
 
         ]);
 
@@ -95,7 +101,7 @@ class TaxRegisterServices
 
     public function storeData($request)
     {
-        TaxRegister::create([
+        $taxregisterId = TaxRegister::create([
 
             'name' => $request->name ,
             'father_name' => $request->fathers_name ,
@@ -118,20 +124,46 @@ class TaxRegisterServices
             'sanitation' => $request->sanitation ,
             'nid_number' => $request->nid_number ,
             'mobile' => $request->mobile,
+            'book_no' => $request->book_no,
             'created_by' => auth()->id(),
             'updated_by' => auth()->id(),
 
 
-        ]);
+        ])->id;
+
+        $this->storeTaxAmount($request,$taxregisterId);
     }
+
+    public function storeTaxAmount($request,$taxregisterId)
+    {
+
+        $data = [];
+
+        foreach ($request->amount_of_tax ?? [] as $key => $amount_of_tax)
+        {
+            $data[] = [
+
+                'tax_register_id' => $taxregisterId,
+                'from' => $request->from_year[$key],
+                'to' => $request->to_year[$key],
+                'amount_of_tax' => $amount_of_tax,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
+        TaxAmount::insert($data);
+    }
+
+
 
     public function editData($id)
     {
-         $data = [
+        $data = [
 
             'wordNumbers' => WordNumber::pluck('name', 'id'),
             'occupations' => Occupation::pluck('name', 'id'),
-            'taxRegister' => TaxRegister::findOrFail($id),
+            'taxRegister' => TaxRegister::with('taxAmount', 'occupation', 'village')->findOrFail($id),
         ];
 
         $data['villages'] = Village::where('word_number_id', $data['taxRegister']->word_number_id)->pluck('name', 'id');
@@ -153,7 +185,6 @@ class TaxRegisterServices
             'amount_of_land' => 'required|numeric',
             'house_and_land_rate' => 'required|numeric',
             'occupation' => 'required',
-            'amount_of_tax' => 'required|numeric',
             'minor_girl_count' => 'nullable|numeric',
             'adult_girl_count' => 'nullable|numeric',
             'minor_boy_count' => 'nullable|numeric',
@@ -164,6 +195,9 @@ class TaxRegisterServices
             'sanitation' => 'required',
             'word_number' => 'required',
             'village' => 'required',
+            'from_year.*' => 'required',
+            'to_year.*' => 'required',
+            'amount_of_tax.*' => 'required',
 
         ],[
 
@@ -191,6 +225,10 @@ class TaxRegisterServices
             'sanitation.required' => 'সানিটেশন অবশ্যক',
             'word_number.required' => 'ওয়ার্ড নাম্বার অবশ্যক',
             'village.required' => 'গ্রাম অবশ্যক',
+            'from_year.*.required' => 'শুরুর বৎছর অবশ্যক',
+            'to_year.*.required' => 'গশুরুর বৎছর অবশ্যক',
+            'amount_of_tax.*.required' => 'ধার্যকৃত ট্যাক্স অবশ্যক',
+
 
         ]);
     }
@@ -211,7 +249,6 @@ class TaxRegisterServices
             'amount_of_land' =>  $request->amount_of_land,
             'house_and_land_rate' => $request->house_and_land_rate ,
             'occupation_id' => $request->occupation ,
-            'amount_of_tax' => $request->amount_of_tax ,
             'minor_girl_count' => $request->minor_girl_count ,
             'adult_girl_count' => $request->adult_girl_count ,
             'minor_boy_count' => $request->minor_boy_count ,
@@ -220,10 +257,54 @@ class TaxRegisterServices
             'sanitation' => $request->sanitation ,
             'nid_number' => $request->nid_number ,
             'mobile' => $request->mobile,
+            'book_no' => $request->book_no,
             'updated_by' => auth()->id(),
 
 
         ]);
+
+        $this->updateTaxAmount($request, $id);
+
+        $this->storeUpdateTaxAmount($request, $id);
+
+    }
+
+    private function updateTaxAmount($request, $id)
+    {
+        if ($request->text_amount_id != null)
+        {
+            foreach ($request->text_amount_id as $key => $text_amount_id)
+            {
+                TaxAmount::where('id', $text_amount_id)->update([
+
+                    'from' => $request->from_year[$key],
+                    'to' => $request->to_year[$key],
+                    'amount_of_tax' => $request->amount_of_tax[$key],
+                    'updated_at' => Carbon::now(),
+
+                ]);
+            }
+        }
+    }
+
+    private function storeUpdateTaxAmount($request, $id)
+    {
+        $data = [];
+
+        foreach ($request->update_amount_of_tax ?? [] as $key => $amount_of_tax)
+        {
+            $data[] = [
+
+                'tax_register_id' => $id,
+                'from' => $request->update_from_year[$key],
+                'to' => $request->update_to_year[$key],
+                'amount_of_tax' => $amount_of_tax,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
+        TaxAmount::insert($data);
     }
 
 }
