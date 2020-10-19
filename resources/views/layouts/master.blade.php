@@ -78,6 +78,13 @@
                 <span>প্রিন্ট </span></a>
         </li>
 
+        </li>
+                <li class="nav-item {{ request()->is('notice') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('notice') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>নোটিশ </span></a>
+        </li>
+
     </ul>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
