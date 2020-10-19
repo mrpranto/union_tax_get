@@ -1,5 +1,14 @@
 @extends('layouts.master')
 @section('title', 'Members')
+@section('css')
+    <style>
+
+        .bg-gray{
+            background-color: #ededed;
+        }
+
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -59,9 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">দালান</label>
@@ -75,8 +82,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">ডোয়া পাকা টিনসেড</label>
@@ -90,8 +95,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">কাঁচা ছাপড়া</label>
@@ -106,7 +109,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="house_model" class="col-form-label">পাকা ঘর ওয়ালা </label>
@@ -120,8 +122,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="amount_of_land" class="col-form-label">জমির পরিমাণ</label>
@@ -146,9 +146,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="occupation" class="col-form-label">পেশা</label>
@@ -172,18 +170,6 @@
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="amount_of_tax" class="col-form-label">ধার্যকৃত ট্যাক্স</label>
-                                        <div>
-                                            <input type="number" class="form-control form-control-sm @error('mobile') is-invalid @enderror" step="0.01" required name="amount_of_tax" value="{{ old('amount_of_tax') }}" id="amount_of_tax" >
-                                            @error('amount_of_tax')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
                                         <label for="minor_girl_count" class="col-form-label">অপ্রাপ্ত বয়স্ক মেয়ের সংখ্যা <small>(১৮ এর নিচে)</small></label>
                                         <div>
                                             <input type="number" class="form-control form-control-sm @error('minor_girl_count') is-invalid @enderror" name="minor_girl_count" value="{{ old('minor_girl_count') }}" id="minor_girl_count" >
@@ -194,9 +180,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="adult_girl_count" class="col-form-label">প্রাপ্তবয়স্ক মেয়ের সংখ্যা <small>(১৮ এর উর্দ্ধে)</small></label>
@@ -233,9 +217,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="count_of_member" class="col-form-label">মোট সদস্য</label>
@@ -249,12 +231,11 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="nid_number" class="col-form-label">জাতীয় পরিচয় পত্র নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('nid_number') is-invalid @enderror" required name="nid_number" value="{{ old('nid_number') }}" id="nid_number">
+                                            <input type="text" class="form-control form-control-sm @error('nid_number') is-invalid @enderror" name="nid_number" value="{{ old('nid_number') }}" id="nid_number">
                                             @error('nid_number')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -262,12 +243,11 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="mobile" class="col-form-label">মোবাইল নং</label>
                                         <div>
-                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" required name="mobile" value="{{ old('mobile') }}" id="mobile">
+                                            <input type="text" class="form-control form-control-sm @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" id="mobile">
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -276,26 +256,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">সানিটেশন</label>
-                                        <div>
-
-                                            <label><input type="radio" name="sanitation" value="1" {{ old('sanitation') == 1 ? 'checked' : '' }} required> পাকা</label>
-                                            &nbsp;&nbsp;
-                                            <label><input type="radio" name="sanitation" value="2" {{ old('sanitation') == 2 ? 'checked' : '' }} required> কাঁচা</label>
-
-
-                                            @error('sanitation')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-sm-12 col-md-4">
                                     <div class="form-group">
                                         <label for="word_number" class="col-form-label">ওয়ার্ড নাম্বার</label>
@@ -333,8 +293,77 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile" class="col-form-label">বই নং</label>
+                                        <div>
+                                            <input type="number" class="form-control form-control-sm @error('book_no') is-invalid @enderror" name="book_no" value="{{ old('book_no') }}" id="book_no">
+                                            @error('book_no')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-2">
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">সানিটেশন</label>
+                                        <div>
+
+                                            <label><input type="radio" name="sanitation" value="1" {{ old('sanitation') == 1 ? 'checked' : '' }} required> পাকা</label>
+                                            &nbsp;&nbsp;
+                                            <label><input type="radio" name="sanitation" value="2" {{ old('sanitation') == 2 ? 'checked' : '' }} required> কাঁচা</label>
+
+
+                                            @error('sanitation')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-10 offset-md-1">
+
+                                    <table id="myTable" class="table table-bordered edu1">
+
+                                        <tr>
+                                            <th class="bg-gray">ক্রমিক নং</th>
+                                            <th class="text-center bg-gray">বৎছর - থেকে - বৎছর</th>
+                                            <th class="bg-gray">ধার্যকৃত ট্যাক্স</th>
+                                            <th class="bg-gray"></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="serial">1</td>
+                                            <td>
+                                                <div class="input-daterange input-group">
+                                                    <input type="text" class="form-control input-sm date-range" name="from_year[]" required>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">হইতে</span>
+                                                    </div>
+                                                    <input type="text" class="form-control input-sm date-range" name="to_year[]" required>
+                                                </div>
+                                            </td>
+                                            <td><input type="number" class="form-control" name="amount_of_tax[]" required></td>
+                                            <td>
+                                                <button type="button" class="ibtnDel btn btn-sm btn-danger" disabled><i class="fa fa-times-circle"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="4" class="text-right">
+                                                <button class="btn btn-sm btn-dark" id="add" type="button"><i class="fa fa-plus"></i> আরো অ্যাড করুন</button>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                            </div>
 
 
 
@@ -354,4 +383,61 @@
 
         <!--Row-->
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function () {
+
+            $("#add").on("click", function () {
+                var newRow = $("<tr id='tax_amount'>");
+                var cols = "";
+                cols += '<td class="serial"></td>';
+                cols += '<td><div class="input-daterange input-group">\n' +
+                    '        <input type="text" class="form-control input-sm date-range" name="from_year[]" required>\n' +
+                    '        <div class="input-group-prepend">\n' +
+                    '            <span class="input-group-text">হইতে</span>\n' +
+                    '        </div>\n' +
+                    '        <input type="text" class="form-control input-sm date-range" name="to_year[]" required>\n' +
+                    '    </div></td>';
+                cols += '<td><input type="number" class="form-control" name="amount_of_tax[]" required ></td>';
+                cols += '<td><button type="button" class="ibtnDel btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button></td>';
+                newRow.append(cols);
+                $("table.edu1").append(newRow);
+
+                getSerial();
+
+                $('.date-range').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    todayHighlight: true,
+                    todayBtn: 'linked',
+                });
+            });
+
+
+
+            $("table.edu1").on("click", ".ibtnDel", function (event) {
+                $(this).closest("tr").remove();
+                getSerial();
+            });
+
+
+        });
+
+        function getSerial(){
+            $(".serial").each(function (index){
+                $(this).text(index+1)
+            })
+        }
+
+
+        $('.date-range').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+            todayBtn: 'linked',
+        });
+
+    </script>
 @endsection

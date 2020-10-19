@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaxGetsTable extends Migration
+class CreateTaxAmountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTaxGetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tax_gets', function (Blueprint $table) {
+        Schema::create('tax_amounts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tax_register_id');
-            $table->date('date');
             $table->date('from');
             $table->date('to');
-            $table->decimal('tax_amount');
+            $table->decimal('amount_of_tax');
             $table->timestamps();
 
             $table->foreign('tax_register_id')->references('id')->on('tax_registers');
@@ -33,6 +32,6 @@ class CreateTaxGetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tax_gets');
+        Schema::dropIfExists('tax_amounts');
     }
 }
