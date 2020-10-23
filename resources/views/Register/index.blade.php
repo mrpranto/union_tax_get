@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Members')
+@section('title', 'রেজিস্টার তালিকা')
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -40,11 +40,14 @@
                                         <td>{{ $taxRegister->father_name }}</td>
                                         <td>{{ $taxRegister->holding_no }}</td>
                                         <td>{{ $taxRegister->occupation->name }}</td>
-                                        <td>{{ $taxRegister->amount_of_tax }}</td>
+                                        <td>{{ optional($taxRegister->taxAmount->last())->amount_of_tax }}</td>
                                         <td>{{ $taxRegister->count_of_member }}</td>
                                         <td>{{ $taxRegister->mobile }}</td>
                                         <td>
                                             <div class="btn-group">
+                                                <a href="{{ route('tax-register.show', $taxRegister->id) }}" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                                 <a href="{{ route('tax-register.edit', $taxRegister->id) }}" class="btn btn-sm btn-outline-dark">
                                                     <i class="fa fa-pencil-alt"></i>
                                                 </a>

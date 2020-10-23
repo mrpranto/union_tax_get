@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Members')
+@section('title', 'ট্যাক্স গ্রহন করুন')
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -55,14 +55,47 @@
                                 </div>
                             </div>
                         </form>
+
+
+
                         <hr>
 
                         @if (!optional(optional(optional($taxRegister)->taxAmount)->first())->amount_of_tax)
                             <div class="alert alert-warning">
-                                ট্যাক্সের কোন তত্থ্য পাও্যা যাই নাই।
+                                ট্যাক্সের কোন তত্থ্য পাওয়া যাই নাই কারন অনলাইনে {{ dateInBangla(optional($taxRegisterAmountYear->taxAmount->first())->from) }} থেকে তার অর্থ বছর রেকর্ড করা হয়েছে।
                             </div>
 
                         @elseif(request('holding_no'))
+
+                            <div class="row">
+                                <div class="col-sm-6 offset-sm-3 mb-3">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>অর্থ বছর</th>
+                                            <th>ধার্য কৃত ট্যাক্স</th>
+                                            <th>বোকিয়া</th>
+                                        </tr>
+
+                                        @php
+                                            $fromYear = date('Y', strtotime($taxRegisterAmountYear->taxAmount->first()->from));
+                                            $toYear = date('Y');
+                                        @endphp
+                                        @foreach(range($toYear, $fromYear) as $value)
+                                            @php
+
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $value }} - {{ $value+1 }}</td>
+                                                <td>{{ optional(collect($taxRegisterAmountYear->taxAmount)->where('from', $value)->first())->amount_of_tax }}</td>
+                                                <td>{!! optional(collect($taxRegisterAmountYear->tax_get)->where('from', $value)->first())->tax_amount ? '<span class="text-success">নাই</span>' : '<span class="text-danger">হ্যাঁ</span>' !!}</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </table>
+                                </div>
+                            </div>
+
+
 
                             <form action="{{ route('tax-get.store') }}" method="post">
                                 @csrf
@@ -99,7 +132,9 @@
                                             <tr class="row100">
                                                 <td colspan="3"></td>
                                                 <th colspan="2">সর্বমোট</th>
-                                                <th><input type="number" class="form-control form-control-sm" name="amount_of_tax" value="{{ optional($taxRegister->taxAmount->first())->amount_of_tax }}" readonly style="width: 100px;"></th>
+                                                <th>
+                                                    <input type="number" class="form-control form-control-sm" name="amount_of_tax" value="{{ optional($taxRegister->taxAmount->first())->amount_of_tax }}" readonly style="width: 100px;">
+                                                </th>
                                                 <td>টাকা</td>
                                                 <td>--</td>
 

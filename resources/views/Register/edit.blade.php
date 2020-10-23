@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Members')
+@section('title', 'রেজিস্টার আপডেট করুন')
 @section('css')
     <style>
 

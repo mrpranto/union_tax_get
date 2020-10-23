@@ -29,23 +29,27 @@ class TaxGetController extends Controller
     {
         $taxGet = TaxGet::max('id');
         $taxRegister = TaxRegister::query();
-
+        $taxRegisterAmountYear = [];
         if ($request->filled('holding_no')) {
+
             $taxRegister->where('holding_no', $request->holding_no);
+
+            $taxRegisterAmountYear = TaxRegister::query()
+                ->with('taxAmount')
+                ->where('holding_no', $request->holding_no)
+                ->firstOrFail();
         }
 
         if ($request->filled('from_year') && $request->filled('to_year')) {
             $taxRegister->with(['taxAmount' => function ($q) use($request){
-                $q->where('from', '<=', $request->from_year)->where('to', '<=', $request->to_year)->first();
-            }])
-            ;
+                $q->where('from', '<=', $request->from_year)->where('to', '<=', $request->to_year);
+            }]);
         }
 
         $taxRegister = $taxRegister->first();
 
-//        return $taxRegister;
 
-        return view('TaxGet.create', compact('taxRegister', 'taxGet'));
+        return view('TaxGet.create', compact('taxRegister', 'taxGet', 'taxRegisterAmountYear'));
     }
 
     /**
@@ -62,7 +66,7 @@ class TaxGetController extends Controller
            return redirect()->back()->with('error', $request->from .'-'. $request->to.' এই অর্থ বছরে ট্যাক্স গ্রহন হয়ে গেছে।');
        }
 
-       TaxGet::create([
+       $id = TaxGet::create([
 
            'tax_register_id' => $request->tax_register_id,
            'date' => $request->tax_get_date,
@@ -70,9 +74,9 @@ class TaxGetController extends Controller
            'to' => $request->to,
            'tax_amount' => $request->amount_of_tax,
 
-       ]);
+       ])->id;
 
-       return redirect()->back()->with('success', 'টাক্স গ্রহন সফল হয়েছে।');
+       return redirect()->route('tax-get.show', $id);
 
     }
 
@@ -82,9 +86,9 @@ class TaxGetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TaxGet $taxGet)
     {
-        //
+        return view('TaxGet.show', compact('taxGet'));
     }
 
     /**
@@ -116,8 +120,20 @@ class TaxGetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TaxGet $taxGet)
     {
-        //
+        try {
+
+            $taxGet->delete();
+
+        }catch (\Exception $e){
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->with('error', 'আপনি এই ট্যাক্স ডিলিট করতে পারবেন না কারন এই ট্যাক্স অন্য টেবিল এ ব্যবহার করা হয়েছে।');
+            }else{
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        }
+
+        return redirect()->back()->with('success', 'ট্যাক্স ডিলিট সফল হয়েছে।');
     }
 }

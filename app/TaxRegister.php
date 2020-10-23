@@ -18,6 +18,11 @@ class TaxRegister extends Model
         return $this->belongsTo(Village::class);
     }
 
+    public function word_number()
+    {
+        return $this->belongsTo(WordNumber::class);
+    }
+
     public function taxAmount()
     {
         return $this->hasMany(TaxAmount::class)->orderBy('id','desc');

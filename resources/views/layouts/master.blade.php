@@ -54,10 +54,10 @@
                 <i class="fa fa-cash-register"></i>
                 <span>কর ধার্য রেজিস্টার</span>
             </a>
-            <div id="collapseRegister" class="collapse {{ request()->is('tax-register/create') || request()->is('tax-register') || request()->is('tax-register/*/edit') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div id="collapseRegister" class="collapse {{ request()->is('tax-register/create') || request()->is('tax-register') || request()->is('tax-register/*/edit') || request()->is('tax-register/*') ? 'show' : '' }}" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded"><h6 class="collapse-header"></h6>
                     <a class="collapse-item {{ request()->is('tax-register/create') ? 'active' : '' }}" href="{{ route('tax-register.create') }}"><i class="fa fa-plus"></i> নতুন রেজিস্টার</a>
-                    <a class="collapse-item {{ request()->is('tax-register') || request()->is('tax-register/*/edit') ? 'active' : '' }}" href="{{ route('tax-register.index') }}"><i class="fa fa-list"></i> রেজিস্টার তালিকা</a>
+                    <a class="collapse-item {{ request()->is('tax-register') || request()->is('tax-register/*/edit') || request()->is('tax-register/*') ? 'active' : '' }}" href="{{ route('tax-register.index') }}"><i class="fa fa-list"></i> রেজিস্টার তালিকা</a>
                 </div>
             </div>
         </li>

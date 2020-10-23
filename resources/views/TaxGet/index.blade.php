@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title', 'Members')
+@section('title', 'ট্যাক্স গ্রহন তালিকা')
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h4 class="mb-0 text-gray-800"> <i class="fa fa-plus"></i> ট্যাক্স গ্রহন করুন</h4>
+            <h4 class="mb-0 text-gray-800"> <i class="fa fa-plus"></i> ট্যাক্স গ্রহন তালিকা</h4>
         </div>
 
         <div class="row mb-3">
@@ -35,13 +35,24 @@
                                     <tr>
                                         <td>{{ $taxGet->firstItem() + $key }}</td>
                                         <td>{{ $tax->taxRegister->name }}</td>
-                                        <td>{{ $tax->taxRegister->holding_no }}</td>
+                                        <td>{{ enToBnNumber($tax->taxRegister->holding_no) }}</td>
                                         <td>{{ dateInBangla($tax->date) }}</td>
                                         <td>{{ dateInBangla(date('d/m/y', strtotime($tax->from))).'-'.dateInBangla(date('d/m/y', strtotime($tax->to))) }}</td>
-                                        <td>{{ $tax->tax_amount }}</td>
+                                        <td>{{ enToBnNumber($tax->tax_amount) }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> প্রিন্ট</a>
+                                            <div class="btn-group">
+                                                <a href="{{ route('tax-get.show', $tax->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
+                                                <button class="btn btn-sm btn-danger" onclick="deleteCheck({{ $tax->id }})"><i class="fa fa-trash"></i></button>
+                                            </div>
+
                                         </td>
+
+                                        <form action="{{ route('tax-get.destroy', $tax->id) }}" method="post" id="deleteForm_{{ $tax->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+
+
                                     </tr>
 
                                 @empty
@@ -73,6 +84,12 @@
             todayHighlight: true,
             todayBtn: 'linked',
         });
+
+        function delete_check(id)
+        {
+
+        }
+
     </script>
 
 @endsection
