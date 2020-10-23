@@ -21,6 +21,10 @@ Route::get('/page', function () {
     return view('printpage');
 })->name('page');
 
+Route::get('/notice', function () {
+    return view('notice.notice');
+})->name('notice');
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
