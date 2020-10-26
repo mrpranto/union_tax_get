@@ -29,27 +29,27 @@ class TaxGetController extends Controller
     {
         $taxGet = TaxGet::max('id');
         $taxRegister = TaxRegister::query();
-        $taxRegisterAmountYear = [];
+        $taxRegisterInfo = [];
+
         if ($request->filled('holding_no')) {
 
             $taxRegister->where('holding_no', $request->holding_no);
 
-            $taxRegisterAmountYear = TaxRegister::query()
-                ->with('taxAmount')
-                ->where('holding_no', $request->holding_no)
-                ->firstOrFail();
+            $taxRegisterInfo = TaxRegister::query()->where('holding_no', $request->holding_no)->first();
         }
 
         if ($request->filled('from_year') && $request->filled('to_year')) {
+
             $taxRegister->with(['taxAmount' => function ($q) use($request){
-                $q->where('from', '<=', $request->from_year)->where('to', '<=', $request->to_year);
+                $q->where('from', '<=', $request->from_year)->where('to', '<=', $request->to_year)->first();
             }]);
         }
 
         $taxRegister = $taxRegister->first();
 
+//        return $taxRegister;
 
-        return view('TaxGet.create', compact('taxRegister', 'taxGet', 'taxRegisterAmountYear'));
+        return view('TaxGet.create', compact('taxRegister', 'taxGet', 'taxRegisterInfo'));
     }
 
     /**

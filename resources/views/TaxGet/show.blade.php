@@ -42,7 +42,7 @@
                         <td>পিতার নাম</td>
                         <td>{{ $taxGet->taxRegister->father_name }}</td>
                         <td>অর্থ-বছর</td>
-                        <td>{{ dateInBangla(date('Y', strtotime($taxGet->from))) .'-'. dateInBangla(date('Y', strtotime($taxGet->to))) }}</td>
+                        <td>{{ dateInBangla($taxGet->from) .'-'. dateInBangla($taxGet->to) }}</td>
                         <td>বই নং</td>
                         <td>{{ enToBnNumber($taxGet->taxRegister->book_no) }}</td>
                         <td>গ্রামঃ</td>
@@ -50,8 +50,7 @@
                     </tr>
 
                     <tr class="row100">
-                        <td>জমাদানের শেষ তারিখ</td>
-                        <td colspan="2">10-10-2020</td>
+                        <td colspan="3"></td>
                         <td colspan="2">সর্বমোট</td>
                         <td>{{ enToBnNumber($taxGet->tax_amount) }}</td>
                         <td>টাকা</td>
@@ -106,7 +105,7 @@
                         <td>পিতার নাম</td>
                         <td>{{ $taxGet->taxRegister->father_name }}</td>
                         <td>অর্থ-বছর</td>
-                        <td>{{ dateInBangla(date('Y', strtotime($taxGet->from))) .'-'. dateInBangla(date('Y', strtotime($taxGet->to))) }}</td>
+                        <td>{{ dateInBangla($taxGet->from) .'-'. dateInBangla($taxGet->to) }}</td>
                         <td>বই নং</td>
                         <td>{{ enToBnNumber($taxGet->taxRegister->book_no) }}</td>
                         <td>গ্রামঃ</td>
@@ -114,8 +113,7 @@
                     </tr>
 
                     <tr class="row100">
-                        <td>জমাদানের শেষ তারিখ</td>
-                        <td colspan="2">10-10-2020</td>
+                        <td colspan="3"></td>
                         <td colspan="2">সর্বমোট</td>
                         <td>{{ enToBnNumber($taxGet->tax_amount) }}</td>
                         <td>টাকা</td>
@@ -135,7 +133,7 @@
                                 <th>ক্রো.নং</th>
                                 <th>খাত</th>
                                 <th>বোকিয়া</th>
-                                <th>19-20 অর্থো বছরের</th>
+                                <th>{{ dateInBangla($taxGet->from) .'-'. dateInBangla($taxGet->to) }} <br> অর্থ বছরের</th>
                                 <th>মোট পরিমাণ</th>
                                 <th>পয়সা</th>
                                 <th>মন্তব্য</th>
@@ -145,8 +143,8 @@
                                 <td>১</td>
                                 <td>বসতবাড়ির বাৎসরিক মূল্যের উপর কর</td>
                                 <td>০.০০</td>
-                                <td>১০০</td>
-                                <td>১০০</td>
+                                <td>{{ enToBnNumber($taxGet->tax_amount) }}</td>
+                                <td>{{ enToBnNumber($taxGet->tax_amount) }}</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
@@ -225,6 +223,16 @@
                                 <td>০.০০</td>
                                 <td>০.০০</td>
                                 <td>০.০০</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+
+                            <tr class="row100">
+                                <td>10</td>
+                                <td>মোট</td>
+                                <td>০.০০</td>
+                                <td>০.০০</td>
+                                <td>{{ enToBnNumber($taxGet->tax_amount) }}</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>

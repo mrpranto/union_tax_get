@@ -60,99 +60,113 @@
 
                         <hr>
 
-                        @if (!optional(optional(optional($taxRegister)->taxAmount)->first())->amount_of_tax)
+                        @if (!request('holding_no'))
                             <div class="alert alert-warning">
-                                ট্যাক্সের কোন তত্থ্য পাওয়া যাই নাই কারন অনলাইনে {{ dateInBangla(optional($taxRegisterAmountYear->taxAmount->first())->from) }} থেকে তার অর্থ বছর রেকর্ড করা হয়েছে।
-                            </div>
-
-                        @elseif(request('holding_no'))
-
-                            <div class="row">
-                                <div class="col-sm-6 offset-sm-3 mb-3">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th>অর্থ বছর</th>
-                                            <th>ধার্য কৃত ট্যাক্স</th>
-                                            <th>বোকিয়া</th>
-                                        </tr>
-
-                                        @php
-                                            $fromYear = date('Y', strtotime($taxRegisterAmountYear->taxAmount->first()->from));
-                                            $toYear = date('Y');
-                                        @endphp
-                                        @foreach(range($toYear, $fromYear) as $value)
-                                            @php
-
-                                            @endphp
-                                            <tr>
-                                                <td>{{ $value }} - {{ $value+1 }}</td>
-                                                <td>{{ optional(collect($taxRegisterAmountYear->taxAmount)->where('from', $value)->first())->amount_of_tax }}</td>
-                                                <td>{!! optional(collect($taxRegisterAmountYear->tax_get)->where('from', $value)->first())->tax_amount ? '<span class="text-success">নাই</span>' : '<span class="text-danger">হ্যাঁ</span>' !!}</td>
-                                            </tr>
-                                        @endforeach
-
-                                    </table>
-                                </div>
+                                হোল্ডিং নং এবং অর্থ বছর দিয়ে খোঁজ করুন
                             </div>
 
 
+                        @else
 
-                            <form action="{{ route('tax-get.store') }}" method="post">
-                                @csrf
+                            @if($taxRegister)
 
-                                <input type="hidden" value="{{ $taxRegister->id }}" name="tax_register_id">
 
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-12">
+                                    <div class="col-sm-6 offset-sm-3 mb-3">
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th>খানা প্রধানের নামঃ</th>
-                                                <td>{{ $taxRegister->name }}</td>
-                                                <th>হোল্ডিং নং</th>
-                                                <td>{{ $taxRegister->holding_no }}</td>
-                                                <th>বিল নং</th>
-                                                <td>{{ str_pad(($taxGet + 1),4,"0000",STR_PAD_LEFT)  }}</td>
-                                                <th>ইস্যুর তারিখ</th>
-                                                <td>{{ dateInBangla(date('Y-m-d')) }}</td>
-                                                <input type="hidden" value="{{ date('Y-m-d') }}" name="tax_get_date">
-                                                <input type="hidden" value="{{ request('from_year') }}" name="from">
-                                                <input type="hidden" value="{{ request('to_year') }}" name="to">
-                                            </tr>
-                                            <tr>
-                                                <th>পিতার নাম</th>
-                                                <td>{{ $taxRegister->father_name }}</td>
-                                                <th>অর্থ-বছর</th>
-                                                <td>{{ dateInBangla(date('d/m/y' ,strtotime(request('from_year')))) .'-'. dateInBangla(date('d/m/y', strtotime(request('to_year'))))  }}</td>
-                                                <th>বই নং</th>
-                                                <td>{{ $taxRegister->book_no }}</td>
-                                                <th>গ্রামঃ</th>
-                                                <td>{{ $taxRegister->village->name }}</td>
+                                                <th>অর্থ বছর</th>
+                                                <th>ধার্য কৃত ট্যাক্স</th>
+                                                <th>বোকিয়া</th>
                                             </tr>
 
-                                            <tr class="row100">
-                                                <td colspan="3"></td>
-                                                <th colspan="2">সর্বমোট</th>
-                                                <th>
-                                                    <input type="number" class="form-control form-control-sm" name="amount_of_tax" value="{{ optional($taxRegister->taxAmount->first())->amount_of_tax }}" readonly style="width: 100px;">
-                                                </th>
-                                                <td>টাকা</td>
-                                                <td>--</td>
+                                            @php
+                                                $fromYear = date('Y', strtotime(optional($taxRegisterInfo->taxAmount->last())->from));
+                                                $toYear = date('Y');
+                                            @endphp
+                                            @foreach(range($toYear, $fromYear) as $value)
+                                                @php
 
-                                            </tr>
+                                                    @endphp
+                                                <tr>
+                                                    <td>{{ $value }} - {{ $value+1 }}</td>
+                                                    <td>{{ optional(collect($taxRegisterInfo->taxAmount)->where('from', $value)->first())->amount_of_tax }}</td>
+                                                    <td>{!! optional(collect($taxRegisterInfo->tax_get)->where('from', $value)->first())->tax_amount ? '<span class="text-success">নাই</span>' : '<span class="text-danger">হ্যাঁ</span>' !!}</td>
+                                                </tr>
+                                            @endforeach
+
                                         </table>
                                     </div>
                                 </div>
 
-                                <div class="form-group row mt-3">
-                                    <div class="col-sm-12">
-                                        <div class="btn-group float-right">
-                                            <button type="submit" class="btn btn-dark btn-sm"><i class="fa fa-plus"></i> Get Tax</button>
+
+
+                                <form action="{{ route('tax-get.store') }}" method="post">
+                                    @csrf
+
+                                    <input type="hidden" value="{{ $taxRegister->id }}" name="tax_register_id">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>খানা প্রধানের নামঃ</th>
+                                                    <td>{{ $taxRegister->name }}</td>
+                                                    <th>হোল্ডিং নং</th>
+                                                    <td>{{ $taxRegister->holding_no }}</td>
+                                                    <th>বিল নং</th>
+                                                    <td>{{ str_pad(($taxGet + 1),4,"0000",STR_PAD_LEFT)  }}</td>
+                                                    <th>ইস্যুর তারিখ</th>
+                                                    <td>{{ dateInBangla(date('Y-m-d')) }}</td>
+                                                    <input type="hidden" value="{{ date('Y-m-d') }}" name="tax_get_date">
+                                                    <input type="hidden" value="{{ request('from_year') }}" name="from">
+                                                    <input type="hidden" value="{{ request('to_year') }}" name="to">
+                                                </tr>
+                                                <tr>
+                                                    <th>পিতার নাম</th>
+                                                    <td>{{ $taxRegister->father_name }}</td>
+                                                    <th>অর্থ-বছর</th>
+                                                    <td>{{ dateInBangla(date('d/m/y' ,strtotime(request('from_year')))) .'-'. dateInBangla(date('d/m/y', strtotime(request('to_year'))))  }}</td>
+                                                    <th>বই নং</th>
+                                                    <td>{{ $taxRegister->book_no }}</td>
+                                                    <th>গ্রামঃ</th>
+                                                    <td>{{ $taxRegister->village->name }}</td>
+                                                </tr>
+
+                                                <tr class="row100">
+                                                    <td colspan="3"></td>
+                                                    <th colspan="2">সর্বমোট</th>
+                                                    <th>
+                                                        <input type="number" class="form-control form-control-sm" name="amount_of_tax" value="{{ optional($taxRegister->taxAmount->first())->amount_of_tax }}" readonly style="width: 100px;">
+                                                    </th>
+                                                    <td>টাকা</td>
+                                                    <td>--</td>
+
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
 
+                                    <div class="form-group row mt-3">
+                                        <div class="col-sm-12">
+                                            <div class="btn-group float-right">
+                                                <button type="submit" class="btn btn-dark btn-sm"><i class="fa fa-plus"></i> Get Tax</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            @else
+
+
+                                <div class="alert alert-warning">
+                                    এই হোল্ডিং নং কোন রেকর্ড পাওয়া যাই নাই।
+                                </div>
+
+
+                            @endif
                         @endif
+
 
 
                     </div>
@@ -169,10 +183,10 @@
 
     <script>
         $('.date-range').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
-            todayBtn: 'linked',
+            minViewMode: 2,
+            format: 'yyyy',
+            autoclose:true
+
         });
     </script>
 

@@ -408,10 +408,9 @@
                 getSerial();
 
                 $('.date-range').datepicker({
-                    format: 'yyyy-mm-dd',
-                    autoclose: true,
-                    todayHighlight: true,
-                    todayBtn: 'linked',
+                    minViewMode: 2,
+                    format: 'yyyy',
+                    autoclose:true
                 });
             });
 
@@ -433,10 +432,9 @@
 
 
         $('.date-range').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
-            todayBtn: 'linked',
+            minViewMode: 2,
+            format: 'yyyy',
+            autoclose:true
         });
 
     </script>
