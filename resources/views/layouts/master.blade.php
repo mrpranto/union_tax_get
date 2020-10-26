@@ -74,16 +74,11 @@
                 </div>
             </div>
         </li>
-                <li class="nav-item {{ request()->is('page') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('page') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>প্রিন্ট </span></a>
-        </li>
 
         </li>
                 <li class="nav-item {{ request()->is('notice') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('notice') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <a class="nav-link" href="{{ route('notice.index') }}">
+                <i class="fas fa-file"></i>
                 <span>নোটিশ </span></a>
         </li>
 

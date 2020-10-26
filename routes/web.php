@@ -21,9 +21,6 @@ Route::get('/page', function () {
     return view('printpage');
 })->name('page');
 
-Route::get('/notice', function () {
-    return view('notice.notice');
-})->name('notice');
 
 Auth::routes(['register' => false]);
 
@@ -36,5 +33,7 @@ Route::group(['middleware' => 'auth'],function (){
     Route::get('get-villages', 'TaxRegisterController@getVillages')->name('get.villages');
 
     Route::resource('tax-get', 'TaxGetController');
+
+    Route::resource('notice', 'NoticeController');
 
 });

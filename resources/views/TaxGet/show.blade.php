@@ -64,7 +64,7 @@
                         <p>তাং</p>
                     </div>
                     <div class="col-md-4">
-                        <p>আদায়কারী স্বাক্ষর</p>
+                        <p>যাচাইকারীর স্বাক্ষর</p>
                         <p>তাং</p>
                     </div>
                     <div class="col-md-4">
@@ -242,11 +242,11 @@
                 </div>
                 <div class="row pt-5" style="">
                     <div class="col-md-4">
-                        <p>আদায়কারী স্বাক্ষর</p>
+                        <p>আদায়কারীর স্বাক্ষর</p>
                         <p>তাং</p>
                     </div>
                     <div class="col-md-4">
-                        <p>আদায়কারী স্বাক্ষর</p>
+                        <p>যাচাইকারীর স্বাক্ষর</p>
                         <p>তাং</p>
                     </div>
                     <div class="col-md-4">
