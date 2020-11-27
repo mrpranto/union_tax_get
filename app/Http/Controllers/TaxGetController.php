@@ -27,7 +27,7 @@ class TaxGetController extends Controller
      */
     public function create(Request $request)
     {
-        $taxGet = TaxGet::max('id');
+        $taxGet = TaxGet::query()->max('id');
         $taxRegister = TaxRegister::query();
         $taxRegisterInfo = [];
 
@@ -40,7 +40,7 @@ class TaxGetController extends Controller
 
         if ($request->filled('from_year') && $request->filled('to_year')) {
 
-            $taxRegister->with(['taxAmount' => function ($q) use($request){
+            $taxRegister->with(['taxAmount' => function ($q) use ($request) {
                 $q->where('from', '<=', $request->from_year)->where('to', '<=', $request->to_year)->first();
             }]);
         }
@@ -55,35 +55,39 @@ class TaxGetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-       $checkTaxData = TaxGet::where('from', $request->from)->where('to', $request->to)->count();
+        $checkTaxData = TaxGet::query()
+            ->where('tax_register_id', $request->tax_register_id)
+            ->where('from', $request->from)
+            ->where('to', $request->to)
+            ->count();
 
-       if ($checkTaxData > 0){
-           return redirect()->back()->with('error', $request->from .'-'. $request->to.' এই অর্থ বছরে ট্যাক্স গ্রহন হয়ে গেছে।');
-       }
+        if ($checkTaxData > 0) {
+            return redirect()->back()->with('error', $request->from . '-' . $request->to . ' এই অর্থ বছরে ট্যাক্স গ্রহন হয়ে গেছে।');
+        }
 
-       $id = TaxGet::create([
+        $id = TaxGet::create([
 
-           'tax_register_id' => $request->tax_register_id,
-           'date' => $request->tax_get_date,
-           'from' => $request->from,
-           'to' => $request->to,
-           'tax_amount' => $request->amount_of_tax,
+            'tax_register_id' => $request->tax_register_id,
+            'date' => $request->tax_get_date,
+            'from' => $request->from,
+            'to' => $request->to,
+            'tax_amount' => $request->amount_of_tax,
 
-       ])->id;
+        ])->id;
 
-       return redirect()->route('tax-get.show', $id);
+        return redirect()->route('tax-get.show', $id);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(TaxGet $taxGet)
@@ -94,7 +98,7 @@ class TaxGetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -105,8 +109,8 @@ class TaxGetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -117,7 +121,7 @@ class TaxGetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(TaxGet $taxGet)
@@ -126,10 +130,10 @@ class TaxGetController extends Controller
 
             $taxGet->delete();
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             if ($e->getCode() == 23000) {
                 return redirect()->back()->with('error', 'আপনি এই ট্যাক্স ডিলিট করতে পারবেন না কারন এই ট্যাক্স অন্য টেবিল এ ব্যবহার করা হয়েছে।');
-            }else{
+            } else {
                 return redirect()->back()->with('error', $e->getMessage());
             }
         }
