@@ -75,7 +75,7 @@
     </div>
 @endsection
 
-@section('js')
+@push('js')
 
     <script>
         $('.date-range').datepicker({
@@ -92,4 +92,4 @@
 
     </script>
 
-@endsection
+@endpush

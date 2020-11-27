@@ -385,7 +385,7 @@
     </div>
 @endsection
 
-@section('js')
+@push('js')
     <script>
         $(document).ready(function () {
 
@@ -438,4 +438,4 @@
         });
 
     </script>
-@endsection
+@endpush

@@ -140,7 +140,7 @@
 <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-@yield('js')
+@stack('js')
 
 <script>
 

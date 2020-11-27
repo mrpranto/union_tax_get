@@ -47,8 +47,6 @@ class TaxGetController extends Controller
 
         $taxRegister = $taxRegister->first();
 
-//        return $taxRegister;
-
         return view('TaxGet.create', compact('taxRegister', 'taxGet', 'taxRegisterInfo'));
     }
 

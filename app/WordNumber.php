@@ -12,4 +12,9 @@ class WordNumber extends Model
     {
         return $this->hasMany(Village::class, 'word_number_id', 'id');
     }
+
+    public function taxRegisters()
+    {
+        return $this->hasMany(TaxRegister::class);
+    }
 }

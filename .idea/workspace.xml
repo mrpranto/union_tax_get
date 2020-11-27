@@ -24,7 +24,16 @@
   <component name="ChangeListManager">
     <list default="true" id="c2389988-1c4b-4485-bab7-6e33b4e0a907" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxGetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxGetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/WordNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WordNumber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/demo/chart-pie-demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/demo/chart-pie-demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Register/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/TaxGet/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/TaxGet/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/TaxGet/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/TaxGet/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +207,7 @@
       <workItem from="1603689043918" duration="5347000" />
       <workItem from="1603987622484" duration="30000" />
       <workItem from="1604058692990" duration="224000" />
-      <workItem from="1606471354276" duration="218000" />
+      <workItem from="1606471354276" duration="12602000" />
     </task>
     <servers />
   </component>
@@ -246,10 +255,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="339" y="180" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1602357167047" />
-    <state x="486" y="114" width="945" height="965" key="search.everywhere.popup" timestamp="1606471409192">
+    <state x="486" y="114" width="945" height="965" key="search.everywhere.popup" timestamp="1606507409081">
       <screen x="0" y="30" width="1920" height="1050" />
     </state>
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.30.1366.738@0.30.1366.738" timestamp="1603725528902" />
-    <state x="486" y="114" width="945" height="965" key="search.everywhere.popup/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606471409192" />
+    <state x="486" y="114" width="945" height="965" key="search.everywhere.popup/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606507409081" />
   </component>
 </project>
