@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class WordNumber extends Model
 {
@@ -17,4 +18,5 @@ class WordNumber extends Model
     {
         return $this->hasMany(TaxRegister::class);
     }
+
 }

@@ -21,7 +21,7 @@
                                         <a href="{{ route('tax-register.index') }}?word-number={{ $word_number->id }}"
                                            class="text-decoration-none">
                                             <div
-                                                class="h5 mb-0 font-weight-bold text-gray-800">{{ enToBnNumber($word_number->taxRegisters->count()) }}</div>
+                                                class="h5 mb-0 font-weight-bold text-gray-800">{{ enToBnNumber(count($word_numbers)) }}</div>
                                         </a>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-pie">
-                            <canvas id="myPieChart" width="303" height="253" class="chartjs-render-monitor"
+                            <canvas id="myPieChart" width="300" height="150" class="chartjs-render-monitor"
                                     style="display: block; width: 303px; height: 253px;"></canvas>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
 
             @foreach($word_numbers as $key => $word_number)
 
-                @if ($word_number->tax_registers_count > 0 || $word_number->tax_get_count > 0)
+{{--                @if ($word_number->tax_registers_count > 0 || $word_number->tax_get_count > 0)--}}
                     <div class="col-sm-4">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -76,14 +76,14 @@
                             <div class="card-body">
 
                                 <div class="chart-pie">
-                                    <canvas id="myPieChart_{{ $word_number->id }}" width="303" height="253" class="chartjs-render-monitor"
+                                    <canvas id="myPieChart_{{ $word_number->id }}" width="300" height="150" class="chartjs-render-monitor"
                                             style="display: block; width: 303px; height: 253px;"></canvas>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                @endif
+{{--                @endif--}}
             @endforeach
 
         </div>
@@ -131,21 +131,21 @@
 
         @foreach($word_numbers as $key => $word_number)
 
-        @if ($word_number->tax_registers_count > 0 || $word_number->tax_get_count > 0)
+{{--        @if ($word_number->tax_registers_count > 0 || $word_number->tax_get_count > 0)--}}
         var ctx = document.getElementById("myPieChart_{{ $word_number->id }}");
         var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: ["মোট টাক্স রেজিস্টার", "ট্যাক্স গ্রহন"],
                 datasets: [{
-                    data: [{{ $word_number->tax_registers_count }}, {{ $word_number->tax_get_count }}],
+                    data: [{{ $word_number->totalTax }}, {{ $word_number->taxGet }}],
                     backgroundColor: ['#4e73df', '#26a074', '#36b9cc'],
                     hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
             },
         });
-        @endif
+{{--        @endif--}}
         @endforeach
 
 
