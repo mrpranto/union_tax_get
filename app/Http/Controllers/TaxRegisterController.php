@@ -24,11 +24,11 @@ class TaxRegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $taxRegisters = TaxRegister::with('occupation')->paginate(30);
+        $data = $this->taxRegisterServices->indexData($request);
 
-        return view('Register.index', compact('taxRegisters'));
+        return view('Register.index', $data);
     }
 
     /**

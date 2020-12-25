@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\TaxAmount;
 use App\TaxGet;
 use App\TaxRegister;
 use App\WordNumber;
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        dd($this->dashboardCounter());
+//        dd($this->dashboardCounter()['tax_year']);
 
         return view('home', $this->dashboardCounter());
     }
@@ -45,31 +46,20 @@ class HomeController extends Controller
 
             'word_numbers' => DB::select(DB::raw($query)),
 
-//            'word_numbers' => WordNumber::query()
-//                            ->withCount('taxRegisters as total_register')
-//                            ->with(['taxRegisters' => function ($q) {
-//                                $q->withCount(['taxAmount' => function ($sq) {
-//                                    $sq->where('from', date('Y'))
-//                                        ->where('to', (date('Y') + 1))
-//                                        ->select(DB::raw('SUM(amount_of_tax) as total_register_amount'));
-//                                }]);
-//                            }])
-//                            ->withCount(['taxRegisters as tax_get_amount'=> function ($q) {
-//                                $q->whereHas('tax_get', function ($q) {
-//                                    $q->where('from', date('Y'))->where('to', (date('Y') + 1));
-//                                });
-//                            }])
-//                            ->get(['name', 'id']),
-
-            'total_register' => TaxRegister::query()
-                                ->whereHas('taxAmount', function ($q) {
-                                    $q->where('from', date('Y'))
-                                        ->where('to', (date('Y') + 1));
-                                })->count(),
+            'total_register_amount' => TaxAmount::query()
+                ->where('from', date('Y'))
+                ->where('to', (date('Y') + 1))
+                ->sum('amount_of_tax'),
 
             'total_tax_get' => TaxGet::query()
-                                ->where('from', date('Y'))->where('to', (date('Y') + 1))
-                                ->count(),
+                ->where('from', date('Y'))
+                ->where('to', (date('Y') + 1))
+                ->sum('tax_amount'),
+
+            'tax_year' => TaxGet::query()
+                ->distinct()
+                ->select('from', 'to')
+                ->get()
         ];
     }
 

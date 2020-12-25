@@ -23,11 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2389988-1c4b-4485-bab7-6e33b4e0a907" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets/canvasjs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WordNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WordNumber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxRegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TaxRegisterServices.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Register/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/notice/notice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/notice/notice.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,13 +162,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Register" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\xampp\htdocs\unionProject\public\assets" />
       <recent name="F:\xampp\htdocs\unionProject\resources\views\Register" />
       <recent name="F:\xampp\htdocs\unionProject\resources\views\TaxGet" />
       <recent name="F:\xampp\htdocs\unionProject\resources\views" />
@@ -203,7 +207,11 @@
       <workItem from="1603987622484" duration="30000" />
       <workItem from="1604058692990" duration="224000" />
       <workItem from="1606471354276" duration="12697000" />
-      <workItem from="1606573517046" duration="13083000" />
+      <workItem from="1606573517046" duration="13788000" />
+      <workItem from="1606755126579" duration="6723000" />
+      <workItem from="1607664758592" duration="147000" />
+      <workItem from="1607685463357" duration="31000" />
+      <workItem from="1608882059408" duration="2141000" />
     </task>
     <servers />
   </component>
@@ -247,10 +255,15 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="517" y="318" key="NewPhpFileDialog/0.30.1366.738@0.30.1366.738" timestamp="1602831683926" />
-    <state x="461" y="200" key="SettingsEditor" timestamp="1606586375693">
+    <state x="789" y="174" key="RollbackChangesDialog" timestamp="1606758869447">
       <screen x="0" y="30" width="1920" height="1050" />
     </state>
-    <state x="461" y="200" key="SettingsEditor/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606586375693" />
+    <state x="789" y="174" key="RollbackChangesDialog/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606758869447" />
+    <state x="328" y="58" key="SettingsEditor" timestamp="1607664904369">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="328" y="58" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1607664904369" />
+    <state x="461" y="200" key="SettingsEditor/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606761139821" />
     <state x="807" y="463" key="VCS.ChangelistChooser" timestamp="1606587649428">
       <screen x="0" y="30" width="1920" height="1050" />
     </state>
@@ -259,10 +272,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="339" y="180" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1602357167047" />
-    <state x="486" y="114" width="945" height="965" key="search.everywhere.popup" timestamp="1606590883553">
-      <screen x="0" y="30" width="1920" height="1050" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1608884124368">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.30.1366.738@0.30.1366.738" timestamp="1606573704496" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.30.1366.738@0.30.1366.738" timestamp="1608884124368" />
     <state x="486" y="114" width="945" height="965" key="search.everywhere.popup/1920.334.1366.738/0.30.1920.1050@0.30.1920.1050" timestamp="1606590883553" />
   </component>
 </project>

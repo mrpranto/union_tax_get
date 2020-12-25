@@ -13,6 +13,26 @@ use Carbon\Carbon;
 
 class TaxRegisterServices
 {
+    public function indexData($request)
+    {
+        $data = [];
+        $data['villages'] = Village::query()->pluck('name', 'id');
+        $data['taxRegisters'] = TaxRegister::with('occupation')
+            ->when($request->name, function ($q) use($request) {
+                $q->where('name', $request->name);
+            })
+            ->when($request->father_name, function ($q) use($request) {
+                $q->where('father_name', $request->father_name);
+            })
+            ->when($request->village, function ($q) use($request) {
+                $q->where('village_id', $request->village);
+            })
+            ->paginate(30);
+
+        return $data;
+    }
+
+
     public function createData()
     {
         return $data = [
